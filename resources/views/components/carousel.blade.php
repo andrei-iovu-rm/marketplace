@@ -51,13 +51,7 @@
 
                         <div class="container mx-auto">
                             <div class="flex flex-col w-full lg:w-1/2 md:ml-16 items-center md:items-start px-6 tracking-wide">
-                                <p class="text-black text-2xl my-4">{{ ucwords($offer->title) }}</p>
-                                <ul>
-                                    <li class="text-black text-xl">@money($offer->price) EUR</li>
-                                    <li>{{ $offer->rooms }} {{ $offer->rooms > 1 ? 'rooms' : 'room' }}, {{ $offer->surface }} m<sup>2</sup></li>
-                                    <li>{{ ucwords($offer->county->name) }}, {{ ucwords($offer->city->name) }}, {{ ucwords($offer->area->name) }}</li>
-                                    <li><span class="badge badge-outline">{{ ucwords($offer->category->name) }}</span> <span class="badge badge-outline">{{ ($offer->transaction_type->name) }}</span></li>
-                                </ul>
+                                <x-offer-card-description classTitle="text-black text-2xl my-4" classPrice="text-black text-xl" :offer="$offer"></x-offer-card-description>
                                 <a class="text-xl inline-block no-underline border-b border-gray-600 leading-relaxed hover:text-black hover:border-black" href="#">View offer</a>
                             </div>
                         </div>

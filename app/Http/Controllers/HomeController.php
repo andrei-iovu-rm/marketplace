@@ -18,7 +18,7 @@ class HomeController extends Controller
                 'featured' => Offer::filter(request(['category', 'transaction_type', 'county', 'city', 'search']))
                     ->where('featured', true)->inRandomOrder()->limit(5)->get(),
                 'offers' => Offer::latest()
-                    ->filter(request(['category', 'transaction_type', 'county', 'city', 'search']))->limit(15)->get(),
+                    ->filter(request(['category', 'transaction_type', 'county', 'city', 'search']))->paginate(15)->withQueryString(),
 
                 'categories' => Category::all(),
                 'counties' => County::with(['city'])->filter(request(['city']))->get(),
