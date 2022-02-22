@@ -4,9 +4,13 @@
 <ul>
     <li class="{{ $classPrice }}">@money($offer->price) EUR</li>
     <li>{{ $offer->rooms }} {{ $offer->rooms > 1 ? 'rooms' : 'room' }}, {{ $offer->surface }} m<sup>2</sup></li>
-    <li>{{ ucwords($offer->county->name) }}, {{ ucwords($offer->city->name) }}, {{ ucwords($offer->area->name) }}</li>
     <li>
-        <a href="/?category={{ $offer->category->slug }}&{{ http_build_query(request()->except('category', 'page')) }}"><span class="badge badge-outline">{{ ucwords($offer->category->name) }}</span></a>
-        <a href="/?transaction_type={{ $offer->transaction_type->slug }}&{{ http_build_query(request()->except('transaction_type', 'page')) }}"><span class="badge badge-outline">{{ ($offer->transaction_type->name) }}</span></a>
+        <x-anchor :results="$offer->county" field="county"></x-anchor>,
+        <x-anchor :results="$offer->city" field="city"></x-anchor>,
+        {{ ucwords($offer->area->name) }}
+    </li>
+    <li>
+        <x-anchor :results="$offer->category" field="category" badge="true"></x-anchor>
+        <x-anchor :results="$offer->transaction_type" field="transaction_type" badge="true"></x-anchor>
     </li>
 </ul>
