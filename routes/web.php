@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\OfferController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,4 +19,6 @@ use Illuminate\Support\Facades\Route;
     return view('demo');
 });*/
 
-Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/', [OfferController::class, 'index'])->name('home');
+
+Route::get('offers/{offer:slug}', [OfferController::class, 'show']);

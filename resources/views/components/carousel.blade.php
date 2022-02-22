@@ -52,7 +52,7 @@
                         <div class="container mx-auto">
                             <div class="flex flex-col w-full lg:w-1/2 md:ml-16 items-center md:items-start px-6 tracking-wide">
                                 <x-offer-card-description classTitle="text-black text-2xl my-4" classPrice="text-black text-xl" :offer="$offer"></x-offer-card-description>
-                                <a class="text-xl inline-block no-underline border-b border-gray-600 leading-relaxed hover:text-black hover:border-black" href="#">View offer</a>
+                                <a class="text-xl inline-block no-underline border-b border-gray-600 leading-relaxed hover:text-black hover:border-black" href="/offers/{{ $offer->slug }}">View offer</a>
                             </div>
                         </div>
 
