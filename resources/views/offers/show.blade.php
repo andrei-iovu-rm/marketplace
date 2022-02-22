@@ -31,7 +31,7 @@
                             <dt class="text-sm font-medium text-gray-500">County</dt>
                             <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-1">{{ ucwords($offer->county->name) }}</dd>
                             <dt class="text-sm font-medium text-gray-500">City</dt>
-                            <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-1">{{ ucwords($offer->city->name) }} m<sup>2</sup></dd>
+                            <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-1">{{ ucwords($offer->city->name) }}</dd>
                         </div>
                         <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-4 sm:gap-4 sm:px-6">
                             <dt class="text-sm font-medium text-gray-500">Area</dt>
