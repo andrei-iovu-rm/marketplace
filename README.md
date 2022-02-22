@@ -3,6 +3,7 @@
 vendor/bin/sail npm install -D tailwindcss postCss
 vendor/bin/sail npx tailwindcss init
 vendor/bin/sail npm install -D browser-sync
+vendor/bin/sail npm install -D daisyui
 ```
 
 - Start Tailwind
