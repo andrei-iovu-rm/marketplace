@@ -26,5 +26,11 @@ class City extends Model
                 $query->where('slug', $county);
             });
         });
+
+        $query->when($filters['county_id'] ?? false, function($query, $county) {
+            $query->whereHas('county', function($query) use ($county) {
+                $query->where('id', $county);
+            });
+        });
     }
 }
