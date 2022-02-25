@@ -5,7 +5,11 @@
         @foreach($offers as $offer)
             <div class=" {{ $loop->iteration < 4 ? 'lg:col-span-4 md:col-span-4 sm:col-span-3' : 'col-span-3' }} p-6 flex flex-col">
                 <a href="/offers/{{ $offer->slug }}">
-                    <img class="hover:grow hover:shadow-lg" src="https://images.unsplash.com/photo-1555982105-d25af4182e4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w={{ $loop->iteration < 4 ? 464 : 400 }}&h={{ $loop->iteration < 4 ? 464 : 400 }}&q=80">
+                    @if($offer->thumbnail)
+                        <img class="hover:grow hover:shadow-lg" src="{{ asset('storage/' . $offer->thumbnail) }}" width="{{ $loop->iteration < 4 ? 464 : 336 }}"  height="{{ $loop->iteration < 4 ? 348 : 224 }}">
+                    @else
+                        <img class="hover:grow hover:shadow-lg" src="https://images.unsplash.com/photo-1422190441165-ec2956dc9ecc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w={{ $loop->iteration < 4 ? 464 : 336 }}&h={{ $loop->iteration < 4 ? 348 : 224 }}&q=80">
+                    @endif
                 </a>
                 <div class="grid grid-cols-12">
                     <x-offer-card-description :offer="$offer" class="col-span-11">

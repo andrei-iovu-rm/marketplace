@@ -42,19 +42,25 @@
 </style>
 
 @if ($offers->count())
-    <div class="carousel relative container mx-auto" style="max-width:1600px;">
-        <div class="carousel-inner relative overflow-hidden w-full">
+    <div class="carousel relative container mx-auto">
+        <div class="carousel-inner relative overflow-hidden w-full mx-6">
             @foreach($offers as $offer)
                 <input class="carousel-open" type="radio" id="carousel-{{ $loop->iteration }}" name="carousel" aria-hidden="true" hidden="" {{ $loop->first ? 'checked="checked"' : '' }}>
                 <div class="carousel-item absolute opacity-0 min-w-full" style="height:50vh;">
-                    <div class="block h-full w-full mx-auto flex pt-6 md:pt-0 md:items-center bg-cover bg-right" style="background-image: url('https://images.unsplash.com/photo-1422190441165-ec2956dc9ecc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1600&q=80');">
+                    <div class="block h-full w-full mx-auto flex pt-6 md:pt-0 md:items-center bg-cover bg-right" style="max-width:1600px; height: 32rem;
+                        @if($offer->thumbnail)
+                            background-image: url({{ asset('storage/' . $offer->thumbnail) }});
+                        @else
+                            background-image: url('https://images.unsplash.com/photo-1422190441165-ec2956dc9ecc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1600&q=80');
+                        @endif
+                    ">
 
                         <div class="container mx-auto">
-                            <div class="flex flex-col w-full lg:w-1/2 md:ml-16 items-center md:items-start px-6 tracking-wide">
+                            <div class="flex flex-col w-full lg:w-1/3 md:w-1/2 md:ml-16 items-center md:items-start px-6 tracking-wide rounded bg-white opacity-50">
                                 <x-offer-card-description classTitle="text-black text-2xl my-4" classPrice="text-black text-xl" :offer="$offer">
                                     <a href="/offers/{{ $offer->slug }}">{{ ucwords($offer->title) }}</a>
                                 </x-offer-card-description>
-                                <a class="text-xl inline-block no-underline border-b border-gray-600 leading-relaxed hover:text-black hover:border-black" href="/offers/{{ $offer->slug }}">View offer</a>
+                                <a class="text-xl inline-block no-underline border-b border-gray-600 leading-relaxed hover:text-black hover:border-black my-4" href="/offers/{{ $offer->slug }}">View offer</a>
                             </div>
                         </div>
 

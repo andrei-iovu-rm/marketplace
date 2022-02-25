@@ -6,6 +6,11 @@ vendor/bin/sail npm install -D browser-sync
 vendor/bin/sail npm install -D daisyui
 ```
 
+- Create symbolic linnk for uploaded images
+```
+vendor/bin/sail php artisan storage:link
+```
+
 - Start Tailwind
 ```
 vendor/bin/sail npm run dev

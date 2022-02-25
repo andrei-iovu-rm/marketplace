@@ -40,7 +40,11 @@
     <x-layout.user-nav></x-layout.user-nav>
 </x-layout.main-nav>
 
-{{ $slot }}
+<section class="bg-white py-8">
+    <div class="container mx-auto">
+        {{ $slot }}
+    </div>
+</section>
 
 <section class="bg-white py-8">
 
