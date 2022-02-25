@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\City;
 use App\Models\County;
+use App\Models\FavouriteOffer;
 use App\Models\Offer;
 use App\Models\TransactionType;
 
@@ -24,6 +25,9 @@ class OfferController extends Controller
                 'counties' => County::with(['city'])->filter(request(['city']))->get(),
                 'cities' => City::with(['county'])->filter(request(['county']))->get(),
                 'transaction_types' => TransactionType::all(),
+                'favourites' => FavouriteOffer::where('user_id', auth()->id())->get()->mapWithKeys(function ($item, $key){
+                    return [$item->id => $item->offer_id];
+                })->toArray(),
             ]
         );
     }

@@ -1386,9 +1386,6 @@ body[dir=rtl] .checkbox {
 body[dir=rtl] .checkbox:checked,body[dir=rtl] .checkbox[checked=true] {
   background-image: linear-gradient(45deg,transparent 65%,hsl(var(--chkbg)) 65.99%),linear-gradient(-45deg,transparent 75%,hsl(var(--chkbg)) 75.99%),linear-gradient(45deg,hsl(var(--chkbg)) 40%,transparent 40.99%),linear-gradient(-45deg,hsl(var(--chkbg)) 30%,hsl(var(--chkfg)) 30.99%,hsl(var(--chkfg)) 40%,transparent 40.99%),linear-gradient(45deg,hsl(var(--chkfg)) 50%,hsl(var(--chkbg)) 50.99%);
 }
-.drawer-toggle:focus-visible~.drawer-content .drawer-button.glass {
-  outline: 2px solid currentColor;
-}
 .dropdown.dropdown-hover:hover .dropdown-content,.dropdown.dropdown-open .dropdown-content,.dropdown:focus .dropdown-content,.dropdown:focus-within .dropdown-content {
   --tw-scale-x: 1;
   --tw-scale-y: 1;
@@ -1750,15 +1747,6 @@ body[dir=rtl] .checkbox:checked,body[dir=rtl] .checkbox[checked=true] {
 .rounded-box {
   border-radius: var(--rounded-box,1rem);
 }
-.glass,.glass.btn-active,.glass:hover {
-  border: none;
-  -webkit-backdrop-filter: blur(var(--glass-blur, 40px));
-          backdrop-filter: blur(var(--glass-blur, 40px));
-  background-color: transparent;
-  background-image: linear-gradient(135deg,rgb(255 255 255 / var(--glass-opacity,30%)) 0,rgb(0 0 0 / 0) 100%),linear-gradient(var(--glass-reflex-degree,100deg),rgb(255 255 255 / var(--glass-reflex-opacity,10%)) 25%,rgb(0 0 0 / 0) 25%);
-  box-shadow: 0 0 0 1px rgb(255 255 255 / var(--glass-border-opacity,10%)) inset,0 0 0 2px rgb(0 0 0 / 5%);
-  text-shadow: 0 1px rgb(0 0 0 / var(--glass-text-shadow-opacity,5%));
-}
 .btn-sm {
   height: 2rem;
   padding-left: .75rem;
@@ -1880,6 +1868,10 @@ body[dir=rtl] .checkbox:checked,body[dir=rtl] .checkbox[checked=true] {
   margin-top: 1rem;
   margin-bottom: 1rem;
 }
+.mx-6 {
+  margin-left: 1.5rem;
+  margin-right: 1.5rem;
+}
 .my-auto {
   margin-top: auto;
   margin-bottom: auto;
@@ -1888,9 +1880,8 @@ body[dir=rtl] .checkbox:checked,body[dir=rtl] .checkbox[checked=true] {
   margin-top: -0.5rem;
   margin-bottom: -0.5rem;
 }
-.mx-6 {
-  margin-left: 1.5rem;
-  margin-right: 1.5rem;
+.mb-4 {
+  margin-bottom: 1rem;
 }
 .mt-6 {
   margin-top: 1.5rem;
@@ -1927,9 +1918,6 @@ body[dir=rtl] .checkbox:checked,body[dir=rtl] .checkbox[checked=true] {
 }
 .mr-3 {
   margin-right: 0.75rem;
-}
-.mb-4 {
-  margin-bottom: 1rem;
 }
 .mt-0 {
   margin-top: 0px;
@@ -2026,16 +2014,6 @@ body[dir=rtl] .checkbox:checked,body[dir=rtl] .checkbox[checked=true] {
 }
 .min-w-full {
   min-width: 100%;
-}
-.min-w-max {
-  min-width: -webkit-max-content;
-  min-width: -moz-max-content;
-  min-width: max-content;
-}
-.min-w-fit {
-  min-width: -webkit-fit-content;
-  min-width: -moz-fit-content;
-  min-width: fit-content;
 }
 .max-w-lg {
   max-width: 32rem;
@@ -2382,6 +2360,10 @@ body[dir=rtl] .checkbox:checked,body[dir=rtl] .checkbox[checked=true] {
   --tw-text-opacity: 1;
   color: rgb(55 65 81 / var(--tw-text-opacity));
 }
+.text-red-500 {
+  --tw-text-opacity: 1;
+  color: rgb(239 68 68 / var(--tw-text-opacity));
+}
 .text-gray-500 {
   --tw-text-opacity: 1;
   color: rgb(107 114 128 / var(--tw-text-opacity));
@@ -2393,10 +2375,6 @@ body[dir=rtl] .checkbox:checked,body[dir=rtl] .checkbox[checked=true] {
 .text-gray-900 {
   --tw-text-opacity: 1;
   color: rgb(17 24 39 / var(--tw-text-opacity));
-}
-.text-red-500 {
-  --tw-text-opacity: 1;
-  color: rgb(239 68 68 / var(--tw-text-opacity));
 }
 .text-gray-600 {
   --tw-text-opacity: 1;
@@ -2442,26 +2420,14 @@ body[dir=rtl] .checkbox:checked,body[dir=rtl] .checkbox[checked=true] {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+.opacity-60 {
+  opacity: 0.6;
+}
 .opacity-0 {
   opacity: 0;
 }
-.opacity-90 {
-  opacity: 0.9;
-}
-.opacity-10 {
-  opacity: 0.1;
-}
 .opacity-50 {
   opacity: 0.5;
-}
-.opacity-30 {
-  opacity: 0.3;
-}
-.opacity-40 {
-  opacity: 0.4;
-}
-.opacity-60 {
-  opacity: 0.6;
 }
 .shadow {
   --tw-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);

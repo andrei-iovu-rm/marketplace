@@ -21,5 +21,6 @@ class DatabaseSeeder extends Seeder
         (new TransactionTypeSeeder())->run();
         (new UserSeeder())->run();
         (new OfferSeeder())->run();
+        (new FavouriteOfferSeeder())->run();
     }
 }

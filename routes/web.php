@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminOfferController;
+use App\Http\Controllers\FavouriteOfferController;
 use App\Http\Controllers\OfferController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SessionsController;
@@ -34,4 +35,14 @@ Route::post('logout', [SessionsController::class, 'destroy'])->middleware('auth'
 
 Route::middleware('can:admin')->group(function (){
     Route::resource('admin/offers', AdminOfferController::class)->except('show');
+});
+
+/*Route::middleware('auth')->group(function (){
+    Route::resource('/favourite', FavouriteOfferController::class)->except('show');
+});*/
+
+Route::middleware('auth')->group(function () {
+    Route::get('favourites', [FavouriteOfferController::class, 'index']);
+    Route::post('/favourite/{offer}', [FavouriteOfferController::class, 'store']);
+    Route::delete('/favourite/{offer}', [FavouriteOfferController::class, 'destroy']);
 });
