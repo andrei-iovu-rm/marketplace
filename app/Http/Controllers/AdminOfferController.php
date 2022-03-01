@@ -9,9 +9,7 @@ class AdminOfferController extends Controller
 {
     public function index()
     {
-        return view('admin.offers.index', [
-            'offers' => Offer::latest()->paginate(10)
-        ]);
+        return view('admin.offers.index');
     }
 
     public function create()

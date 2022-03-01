@@ -46,7 +46,7 @@
         <div class="carousel-inner relative overflow-hidden w-full mx-6">
             @foreach($offers as $offer)
                 <input class="carousel-open" type="radio" id="carousel-{{ $loop->iteration }}" name="carousel" aria-hidden="true" hidden="" {{ $loop->first ? 'checked="checked"' : '' }}>
-                <div class="carousel-item absolute opacity-0 min-w-full" style="height:50vh;">
+                <div class="carousel-item absolute opacity-0 min-w-full">
                     <div class="block h-full w-full mx-auto flex pt-6 md:pt-0 md:items-center bg-cover bg-right" style="max-width:1600px; height: 32rem;
                         @if($offer->thumbnail)
                             background-image: url({{ asset('storage/' . $offer->thumbnail) }});

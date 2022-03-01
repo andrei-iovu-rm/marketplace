@@ -9,9 +9,7 @@ class FavouriteOfferController extends Controller
 {
     public function index()
     {
-        return view('favourites.index', [
-            'favourites' => FavouriteOffer::with('offer')->latest()->paginate(10)
-        ]);
+        return view('favourites.index');
     }
 
     public function store(Offer $offer)
