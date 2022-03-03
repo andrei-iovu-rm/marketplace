@@ -18,7 +18,7 @@
             </div>
 
             @if($thumbnail)
-                <img src="{{ $thumbnail->temporaryUrl() }}" alt="" class="rounded-xl ml-6" width="336">
+                <img src="{{ $tempUrl }}" alt="" class="rounded-xl ml-6" width="336">
             @elseif($offer->thumbnail)
                 <img src="{{ asset('storage/' . $offer->thumbnail) }}" alt="" class="rounded-xl ml-6" width="336">
             @endif

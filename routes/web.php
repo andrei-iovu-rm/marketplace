@@ -37,6 +37,8 @@ Route::middleware('can:admin')->group(function (){
     Route::resource('admin/offers', AdminOfferController::class)->except('show');
 });
 
+Route::get('admin/dashboard', [AdminOfferController::class, 'dashboard'])->middleware('can:admin');
+
 /*Route::middleware('auth')->group(function (){
     Route::resource('/favourite', FavouriteOfferController::class)->except('show');
 });*/
