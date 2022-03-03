@@ -30,11 +30,17 @@ trait OffersTrait
     public $baths;
     public $surface;
     public $featured = false;
+    public $tempUrl;
 
     protected $rules = [];
 
     public function updatedThumbnail()
     {
+        try{
+            $this->tempUrl = $this->thumbnail->temporaryUrl();
+        } catch (\Exception $e) {
+            $this->tempUrl = '';
+        }
         $this->validateOffer();
     }
 
@@ -104,7 +110,7 @@ trait OffersTrait
         $attributes = [
             'title' => $this->title,
             'slug' => $this->slug,
-            'thumbnail' => $this->thumbnail ? $this->thumbnail->storePublicly('thumbnails') : $imageToShow,
+            'thumbnail' => $this->thumbnail ? $this->thumbnail->store('thumbnails', 'public') : $imageToShow,
             'excerpt' => $this->excerpt,
             'body' => $this->body,
             'category_id' => $this->category_id,

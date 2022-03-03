@@ -17,7 +17,7 @@
             </div>
 
             @if($thumbnail)
-                <img src="{{ $thumbnail->temporaryUrl() }}" alt="" class="rounded-xl ml-6" width="336">
+                <img src="{{ $tempUrl }}" alt="" class="rounded-xl ml-6" width="336">
             @endif
         </div>
         <x-form.textarea wire:model="excerpt" name="excerpt">{{ old('excerpt') }}</x-form.textarea>

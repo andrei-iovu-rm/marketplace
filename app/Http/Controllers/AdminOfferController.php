@@ -27,4 +27,9 @@ class AdminOfferController extends Controller
 
         return back()->with('success', 'Offer Deleted!');
     }
+
+    public function dashboard()
+    {
+        return redirect('/admin/offers');
+    }
 }

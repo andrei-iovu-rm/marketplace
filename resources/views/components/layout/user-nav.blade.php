@@ -11,8 +11,9 @@
             </label>
             <ul tabindex="0" class="p-2 shadow menu dropdown-content bg-base-100 rounded-box w-52">
                 @admin
-                    <x-dropdown-item href="/admin/offers" :active="request()->is('admin/offers')">All Offers</x-dropdown-item>
-                    <x-dropdown-item href="/admin/offers/create" :active="request()->is('admin/offers/create')">New Offer</x-dropdown-item>
+                    {{--<x-dropdown-item href="/admin/offers" :active="request()->is('admin/offers')">All Offers</x-dropdown-item>
+                    <x-dropdown-item href="/admin/offers/create" :active="request()->is('admin/offers/create')">New Offer</x-dropdown-item>--}}
+                    <x-dropdown-item href="/admin/dashboard" :active="request()->is('admin/offers')">Dashboard</x-dropdown-item>
                 @endadmin
                 <x-dropdown-item href="#" x-data="{}" @click.prevent="document.querySelector('#logout-form').submit()">Log Out</x-dropdown-item>
                 <form id="logout-form" method="POST" action="/logout" class="hidden">
