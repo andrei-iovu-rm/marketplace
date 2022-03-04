@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Validation\ValidationException;
-
 class SessionsController extends Controller
 {
     public function create()
@@ -11,7 +9,7 @@ class SessionsController extends Controller
         return view('sessions.create');
     }
 
-    public function store()
+    /*public function store()
     {
         $attributes = request()->validate(
             [
@@ -30,7 +28,7 @@ class SessionsController extends Controller
 
         session()->regenerate();
         return redirect('/')->with('success', 'Welcome back!');
-    }
+    }*/
 
     public function destroy()
     {

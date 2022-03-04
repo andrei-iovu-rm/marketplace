@@ -27,4 +27,7 @@ vendor/bin/sail artisan ide-helper:meta
 ```
 vendor/bin/sail artisan make:model TableName -mfsc
 vendor/bin/sail artisan migrate:fresh --seed
+vendor/bin/sail php artisan make:livewire Folder/ComponentName
+vendor/bin/sail php artisan make:test Folder/TestName
+vendor/bin/sail test
 ```

@@ -6,8 +6,8 @@ use App\Http\Livewire\Admin\Offers\Edit;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Livewire;
-use Tests\Feature\FakersTrait;
 use Tests\TestCase;
+use Tests\Traits\FakersTrait;
 
 class OfferEditTest extends TestCase
 {

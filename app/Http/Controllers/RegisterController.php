@@ -2,21 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Enums\UserRole;
-use App\Models\User;
-use Illuminate\Validation\Rule;
-use Illuminate\Validation\Rules\Enum;
-
 class RegisterController extends Controller
 {
     public function create()
     {
-        return view('register.create', [
-            'roles' => UserRole::cases(),
-        ]);
+        return view('register.create');
     }
 
-    public function store()
+    /*public function store()
     {
         $attributes = request()->validate(
             [
@@ -33,5 +26,5 @@ class RegisterController extends Controller
         auth()->login($user);
 
         return redirect('/')->with('success', 'Your account has been created!');
-    }
+    }*/
 }

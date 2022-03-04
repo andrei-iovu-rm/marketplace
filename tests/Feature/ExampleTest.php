@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use Tests\TestCase;
+use Tests\Traits\FakersTrait;
 
 class ExampleTest extends TestCase
 {

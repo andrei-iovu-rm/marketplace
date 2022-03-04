@@ -2,8 +2,8 @@
 
 namespace Tests\Feature\Admin;
 
-use Tests\Feature\FakersTrait;
 use Tests\TestCase;
+use Tests\Traits\FakersTrait;
 
 class DashboardTest extends TestCase
 {
