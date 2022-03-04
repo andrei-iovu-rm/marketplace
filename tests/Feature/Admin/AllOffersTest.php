@@ -4,8 +4,8 @@ namespace Tests\Feature\Admin;
 
 use App\Http\Livewire\Admin\Offers\DataTables;
 use Livewire\Livewire;
-use Tests\Feature\FakersTrait;
 use Tests\TestCase;
+use Tests\Traits\FakersTrait;
 
 class AllOffersTest extends TestCase
 {

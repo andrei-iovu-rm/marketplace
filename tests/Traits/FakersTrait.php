@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Traits;
 
 use App\Enums\UserRole;
 use App\Models\Area;
@@ -22,24 +22,41 @@ trait FakersTrait
     private $userAdmin;
     private $userRegular;
 
-    private function createFakeUserAdmin()
+    private function getFakeUserAdminAttributes()
     {
-        $this->userAdmin = User::factory()->create([
+        return [
             'username' => 'johndoetest',
             'name' => 'John Doe Test',
             'email' => 'johndoetest@example.com',
+            'password' => 'password',
             'role' => UserRole::ADMIN->value,
-        ]);
+        ];
+    }
+
+    private function getFakeUserRegularAttributes()
+    {
+        return [
+            'username' => 'janedoetest',
+            'name' => 'Jane Doe Test',
+            'email' => 'janedoetest@example.com',
+            'password' => 'password',
+            'role' => UserRole::USER->value,
+        ];
+    }
+
+    private function createFakeUserAdmin()
+    {
+        $this->userAdmin = $this->createFakeUser($this->getFakeUserAdminAttributes());
     }
 
     private function createFakeUserRegular()
     {
-        $this->userRegular = User::factory()->create([
-           'username' => 'janedoetest',
-           'name' => 'Jane Doe Test',
-           'email' => 'janedoetest@example.com',
-           'role' => UserRole::USER->value,
-        ]);
+        $this->userRegular = $this->createFakeUser($this->getFakeUserRegularAttributes());
+    }
+
+    private function createFakeUser(array $attributes = [])
+    {
+        return User::factory()->create($this->generateFakeUserAttributes($attributes));
     }
 
     private function createFakeOffer(array $attributes = [])
@@ -88,5 +105,16 @@ trait FakersTrait
            'featured' => true,
            'thumbnail' => UploadedFile::fake()->image('thumbnail.jpg'),
         ], $attributes);
+    }
+
+    private function generateFakeUserAttributes(array $attributes = [])
+    {
+        return array_merge([
+            'username' => $this->faker->unique()->userName(),
+            'name' => $this->faker->name(),
+            'email' => $this->faker->unique()->safeEmail(),
+            'password' => 'password',
+            'role' => random_int(1, 2) == 1 ? UserRole::ADMIN->value : UserRole::USER->value,
+       ], $attributes);
     }
 }

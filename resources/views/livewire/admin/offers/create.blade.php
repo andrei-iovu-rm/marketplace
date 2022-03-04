@@ -2,8 +2,8 @@
     <form wire:submit.prevent="submitForm" method="POST" action="#" enctype="multipart/form-data">
         @csrf
 
-        <x-form.input wire:model="title" name="title" :value="old('title')"></x-form.input>
-        <x-form.input wire:model="slug" name="slug" :value="old('slug')"></x-form.input>
+        <x-form.input wire:model.defer="title" name="title" :value="old('title')"></x-form.input>
+        <x-form.input wire:model.defer="slug" name="slug" :value="old('slug')"></x-form.input>
         <div class="flex mt-6">
             <div class="flex-1">
                 <x-form.input wire:model="thumbnail" name="thumbnail" type="file" :value="old('thumbnail')"></x-form.input>
@@ -20,18 +20,18 @@
                 <img src="{{ $tempUrl }}" alt="" class="rounded-xl ml-6" width="336">
             @endif
         </div>
-        <x-form.textarea wire:model="excerpt" name="excerpt">{{ old('excerpt') }}</x-form.textarea>
-        <x-form.textarea wire:model="body" name="body">{{ old('body') }}</x-form.textarea>
+        <x-form.textarea wire:model.defer="excerpt" name="excerpt">{{ old('excerpt') }}</x-form.textarea>
+        <x-form.textarea wire:model.defer="body" name="body">{{ old('body') }}</x-form.textarea>
 
         <x-form.field>
             <x-form.label name="category"></x-form.label>
-            <x-form.select wire:model="category_id" :results="$categories" field="category_id"></x-form.select>
+            <x-form.select wire:model.defer="category_id" :results="$categories" field="category_id"></x-form.select>
             <x-form.error name="category_id"></x-form.error>
         </x-form.field>
 
         <x-form.field>
             <x-form.label name="transaction"></x-form.label>
-            <x-form.select wire:model="transaction_type_id" :results="$transaction_types" field="transaction_type_id"></x-form.select>
+            <x-form.select wire:model.defer="transaction_type_id" :results="$transaction_types" field="transaction_type_id"></x-form.select>
             <x-form.error name="transaction_type_id"></x-form.error>
         </x-form.field>
 
@@ -53,13 +53,13 @@
             <x-form.error name="area_id"></x-form.error>
         </x-form.field>
 
-        <x-form.input wire:model="price" name="price" :value="old('price')" type="number"></x-form.input>
-        <x-form.input wire:model="surface" name="surface" :value="old('surface')" type="float"></x-form.input>
-        <x-form.input wire:model="rooms" name="rooms" :value="old('rooms')" type="number"></x-form.input>
-        <x-form.input wire:model="baths" name="baths" :value="old('baths')" type="number"></x-form.input>
-        <x-form.checkbox wire:model="featured" name="featured" :value="old('featured')" :checkbox="old('featured')"></x-form.checkbox>
+        <x-form.input wire:model.defer="price" name="price" :value="old('price')" type="number"></x-form.input>
+        <x-form.input wire:model.defer="surface" name="surface" :value="old('surface')" type="float"></x-form.input>
+        <x-form.input wire:model.defer="rooms" name="rooms" :value="old('rooms')" type="number"></x-form.input>
+        <x-form.input wire:model.defer="baths" name="baths" :value="old('baths')" type="number"></x-form.input>
+        <x-form.checkbox wire:model.defer="featured" name="featured" :value="old('featured')" :checkbox="old('featured')"></x-form.checkbox>
 
-        <x-form.button>Create</x-form.button>
+        <x-form.button :admin="auth()->check()">Create</x-form.button>
     </form>
     <x-flash></x-flash>
 </div>

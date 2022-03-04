@@ -7,8 +7,8 @@ use App\Models\Offer;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Livewire;
-use Tests\Feature\FakersTrait;
 use Tests\TestCase;
+use Tests\Traits\FakersTrait;
 
 class OfferCreateTest extends TestCase
 {
@@ -63,6 +63,10 @@ class OfferCreateTest extends TestCase
 
         $test->call('submitForm')
             ->assertSee('Offer Created!');
+
+        $this->assertDatabaseHas('offers', [
+            'slug' => __FUNCTION__,
+        ]);
 
         $offer = Offer::where('slug', __FUNCTION__)->first();
         $this->assertNotNull($offer->thumbnail);
