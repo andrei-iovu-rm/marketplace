@@ -3,6 +3,7 @@
 namespace Tests\Feature\Admin;
 
 use App\Http\Livewire\Admin\Offers\DataTables;
+use App\Models\Offer;
 use Livewire\Livewire;
 use Tests\TestCase;
 use Tests\Traits\FakersTrait;
@@ -89,7 +90,7 @@ class AllOffersTest extends TestCase
         ]);
 
         Livewire::test(DataTables::class)
-            ->set('category', 1)
+            ->set('category', Offer::where('id', $offerA->id)->first()->category->slug)
             ->assertSee($offerA->title)
             ->assertDontSee($offerB->title);
     }
@@ -108,7 +109,7 @@ class AllOffersTest extends TestCase
         ]);
 
         Livewire::test(DataTables::class)
-            ->set('transaction_type', 1)
+            ->set('transaction_type', Offer::where('id', $offerA->id)->first()->transaction_type->slug)
             ->assertSee($offerA->title)
             ->assertDontSee($offerB->title);
     }
