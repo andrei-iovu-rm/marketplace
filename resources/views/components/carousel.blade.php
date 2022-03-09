@@ -1,4 +1,4 @@
-@props(['offers'])
+@props(['offers', 'favourites'])
 
 <style>
     .carousel-open:checked + .carousel-item {
@@ -60,6 +60,7 @@
                                 <x-offer-card-description classTitle="text-black text-2xl my-4" classPrice="text-black text-xl" :offer="$offer">
                                     <a href="/offers/{{ $offer->slug }}">{{ ucwords($offer->title) }}</a>
                                 </x-offer-card-description>
+                                <livewire:favourites.create :offer="$offer" :favourites="$favourites" />
                                 <a class="text-xl inline-block no-underline border-b border-gray-600 leading-relaxed hover:text-black hover:border-black my-4" href="/offers/{{ $offer->slug }}">View offer</a>
                             </div>
                         </div>

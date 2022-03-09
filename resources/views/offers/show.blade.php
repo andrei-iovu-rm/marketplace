@@ -6,7 +6,7 @@
             <a href="{{ url()->previous() }}" class="btn btn-sm btn-outline border-gray-200 gap-2">Back</a>
         </div>
         <div class="px-4 py-5 sm:px-6">
-            <x-hero :offer="$offer"></x-hero>
+            <x-hero :offer="$offer" :favourites="$favourites"></x-hero>
         </div>
         <div class="px-4 py-5 sm:px-6">
             <h3 class="text-lg leading-6 font-medium text-gray-900">Description</h3>
