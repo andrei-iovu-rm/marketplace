@@ -1,4 +1,4 @@
-@props(['offer'])
+@props(['offer', 'favourites'])
 
 <section class="w-full mx-auto bg-nordic-gray-light flex pt-12 md:pt-0 md:items-center bg-cover bg-right" style="max-width:1600px; height: 32rem;
     @if($offer->thumbnail)
@@ -12,6 +12,7 @@
             <x-offer-card-description classTitle="text-black text-2xl my-4" classPrice="text-black text-xl" :offer="$offer">
                 {{ ucwords($offer->title) }}
             </x-offer-card-description>
+            <livewire:favourites.create :offer="$offer" :favourites="$favourites" />
             <p class="text-sm leading-relaxed mb-4 text-gray-700">Last changed: <time>{{ $offer->updated_at->diffForHumans() }}</time></p>
         </div>
     </div>

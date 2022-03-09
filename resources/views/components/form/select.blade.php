@@ -1,9 +1,26 @@
-@props(['results', 'field', 'defaultValue' => 0, 'foreignField' => ''])
+@props(['results', 'field', 'defaultValue' => 0, 'foreignField' => '', 'label' => 'Select', 'search' => false])
 
-<select id="{{ $field }}" name="{{ $field }}" class="select select-bordered select-md w-full max-w-xs text-sm text-gray-500 font-medium" {{ $attributes([]) }}>
-    <option value="0">Select</option>
+@php
+    $class = 'select select-bordered w-full max-w-xs text-sm text-gray-500 font-medium';
+    if($search){
+        $class.= ' select-sm';
+    } else {
+        $class.= ' select-md';
+    }
+@endphp
+
+@if($search)
+    <div class="indicator">
+@endif
+
+<select id="{{ $field }}" name="{{ $field }}" class="{{ $class }}" {{ $attributes([]) }}>
+    <option value="{{ $search ? '' : 0 }}">{{ $label }}</option>
     @foreach($results as $result)
-        <option value="{{ $result->id }}" {{ (empty($defaultValue) ? old($field) : old($field, $defaultValue)) == $result->id ? 'selected' : '' }}>
+        @if($search)
+            <option value="{{ $result->slug }}" {{ (empty($defaultValue) ? old($field) : old($field, $defaultValue)) == $result->slug ? 'selected' : '' }}>
+        @else
+            <option value="{{ $result->id }}" {{ (empty($defaultValue) ? old($field) : old($field, $defaultValue)) == $result->id ? 'selected' : '' }}>
+        @endif
             {{ ucwords($result->name) }}
             @if(!empty($foreignField))
                 ({{ ucwords($result->$foreignField->name) }})
@@ -11,3 +28,7 @@
         </option>
     @endforeach
 </select>
+
+@if($search)
+    </div>
+@endif

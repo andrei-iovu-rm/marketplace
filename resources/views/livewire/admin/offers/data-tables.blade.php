@@ -10,21 +10,9 @@
                                value="{{ request('search') }}"
                         >
                     </div>
-                    <div class="col-span-1 items-start flex">
-                        <select wire:model="category" class="select select-bordered select-sm w-full max-w-xs text-sm text-gray-500 font-medium">
-                            <option value="">Select Category</option>
-                            @foreach($categories as $category)
-                                <option value="{{ $category->id }}">{{ ucwords($category->name) }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="col-span-1 items-start flex">
-                        <select wire:model="transaction_type" class="select select-bordered select-sm w-full max-w-xs text-sm text-gray-500 font-medium">
-                            <option value="">Select Transaction</option>
-                            @foreach($transactions as $transaction_type)
-                                <option value="{{ $transaction_type->id }}">{{ ucwords($transaction_type->name) }}</option>
-                            @endforeach
-                        </select>
+                    <div class="col-span-2 items-start ">
+                        <x-form.select wire:model="category" :results="$categories" field="category" label="Select Category" search="true"></x-form.select>
+                        <x-form.select wire:model="transaction_type" :results="$transactions" field="transaction_type" label="Select Transaction" search="true"></x-form.select>
                     </div>
                     <div class="col-span-1 items-start flex mt-1">
                         <div class="items-center h-5">

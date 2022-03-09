@@ -49,13 +49,12 @@ class DataTables extends Component
     {
         return view('livewire.admin.offers.data-tables', [
             'offers' => Offer::latest()->where(function ($query){
-                $query->where('title', 'like', '%' . $this->search . '%')
-                    ->orWhere('excerpt', 'like', '%' . $this->search . '%');
+                $query->filter(['search' => $this->search]);
             })->where('featured', $this->featured)
                 ->when($this->category, function ($query){
-                    $query->where('category_id', $this->category);
+                    $query->filter(['category' => $this->category]);
                 })->when($this->transaction_type, function ($query){
-                    $query->where('transaction_type_id', $this->transaction_type);
+                    $query->filter(['transaction_type' => $this->transaction_type]);
                 })->when($this->sortField, function ($query){
                     $query->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc');
                 })->paginate(10),
