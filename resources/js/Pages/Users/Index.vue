@@ -3,7 +3,10 @@
         <title>Users</title>
     </Head>
     <div class="flex justify-between mb-6">
-        <h1 class="text-3xl">Users</h1>
+        <div class="flex items-center">
+            <h1 class="text-3xl">Users</h1>
+            <Link href="/inertiajs/users/create" class="text-blue-500 text-md ml-3">New user</Link>
+        </div>
         <input v-model="search" type="text" placeholder="Search..." class="border px-2 rounded-lg">
     </div>
     <!--<div style="margin-top: 900px;">
@@ -34,9 +37,10 @@
 </template>
 
 <script setup>
-import Pagination from "./Shared/Pagination";
+import Pagination from "../Shared/Pagination";
 import {ref, watch} from "vue";
 import {Inertia} from "@inertiajs/inertia";
+import debounce from "lodash/debounce";
 
 let props = defineProps({
     //time: String,
@@ -45,9 +49,9 @@ let props = defineProps({
 })
 
 let search = ref(props.filters.search);
-watch(search, function (value){
+watch(search, debounce(function (value){
    Inertia.get('/inertiajs/users', {search: value}, {preserveState: true, replace: true});
-});
+}, 300));
 </script>
 
 <style scoped>
