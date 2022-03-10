@@ -6,6 +6,7 @@ use App\Http\Controllers\OfferController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SessionsController;
 use Illuminate\Support\Facades\Route;
+use Inertia\Inertia;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,4 +48,33 @@ Route::middleware('auth')->group(function () {
     Route::get('favourites', [FavouriteOfferController::class, 'index']);
     Route::post('/favourite/{offer}', [FavouriteOfferController::class, 'store']);
     Route::delete('/favourite/{offer}', [FavouriteOfferController::class, 'destroy']);
+});
+
+
+Route::get('/inertiajs', function () {
+    return Inertia::render('Home');
+});
+Route::get('/inertiajs/users', function () {
+    return Inertia::render('Users', [
+        //'time' => now()->toTimeString()
+        'users' => \App\Models\User::query()
+            ->when(request('search'), function ($query, $search){
+                $query->where('name', 'like', "%{$search}%");
+            })
+            ->paginate(5)
+            ->withQueryString()
+            ->through(function ($user){
+                return ['id' => $user->id, 'name' => $user->name];
+            }),
+        'filters' => Request::only(['search'])
+    ]);
+});
+Route:get('/inertiajs/users/create', function (){
+    return Inertia::render('UserCreate');
+});
+Route::get('/inertiajs/settings', function () {
+    return Inertia::render('Settings');
+});
+Route::post('/inertiajs/logout', function () {
+    dd(request('foo'));
 });
