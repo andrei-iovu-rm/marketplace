@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Request;
+use Inertia\Inertia;
+
 class SessionsController extends Controller
 {
     public function create()
@@ -34,6 +37,9 @@ class SessionsController extends Controller
     {
         auth()->logout();
 
+        if (Request::inertia()) {
+            return Inertia::location('/');
+        }
         return redirect('/')->with('success', 'Goodbye!');
     }
 }
