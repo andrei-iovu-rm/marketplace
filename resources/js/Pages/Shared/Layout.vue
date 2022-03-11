@@ -7,7 +7,7 @@
         <header class="flex max-w-4xl mx-auto">
             <div class="flex items-center">
                 <h1 class="font-bold text-lg py-2.5">My App</h1>
-                <p class="text-sm ml-4">Welcome Back, {{ $username }}</p>
+                <p class="text-sm ml-4">Welcome Back, {{ username }}</p>
             </div>
             <Nav></Nav>
         </header>

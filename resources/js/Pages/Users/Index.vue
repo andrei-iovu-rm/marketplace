@@ -5,7 +5,7 @@
     <div class="flex justify-between mb-6">
         <div class="flex items-center">
             <h1 class="text-3xl">Users</h1>
-            <Link href="/inertiajs/users/create" class="text-blue-500 text-md ml-3">New user</Link>
+            <Link v-if="can.createUser" href="/inertiajs/users/create" class="text-blue-500 text-md ml-3">New user</Link>
         </div>
         <input v-model="search" type="text" placeholder="Search..." class="border px-2 rounded-lg">
     </div>
@@ -26,8 +26,11 @@
                             </div>
                         </div>
                     </td>
-                    <td>
-                        <Link :href="`/users/${user.id}/edit`" class="btn btn-ghost btn-xs">Edit</Link>
+                    <td v-if="user.can.edit">
+                        <Link :href="`/inertiajs/users/${user.id}/edit`" class="btn btn-ghost btn-xs">Edit</Link>
+                    </td>
+                    <td v-if="user.can.delete">
+                        <Link :href="`/inertiajs/users/${user.id}`" method="delete" class="btn btn-ghost btn-xs">Delete</Link>
                     </td>
                 </tr>
             </tbody>
@@ -45,7 +48,8 @@ import debounce from "lodash/debounce";
 let props = defineProps({
     //time: String,
     users: Object,
-    filters: Object
+    filters: Object,
+    can: Object
 })
 
 let search = ref(props.filters.search);

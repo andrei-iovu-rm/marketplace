@@ -2525,9 +2525,6 @@ body[dir=rtl] .checkbox:checked,body[dir=rtl] .checkbox[checked=true] {
 .uppercase {
   text-transform: uppercase;
 }
-.capitalize {
-  text-transform: capitalize;
-}
 .leading-relaxed {
   line-height: 1.625;
 }

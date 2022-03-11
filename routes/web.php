@@ -1,14 +1,12 @@
 <?php
 
-use App\Enums\UserRole;
 use App\Http\Controllers\AdminOfferController;
 use App\Http\Controllers\FavouriteOfferController;
+use App\Http\Controllers\Inertiajs\Users;
 use App\Http\Controllers\OfferController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SessionsController;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Validation\Rule;
-use Illuminate\Validation\Rules\Enum;
 use Inertia\Inertia;
 
 /*
@@ -53,46 +51,18 @@ Route::middleware('auth')->group(function () {
     Route::delete('/favourite/{offer}', [FavouriteOfferController::class, 'destroy']);
 });
 
-
-Route::get('/inertiajs', function () {
-    return Inertia::render('Home');
-});
-Route::get('/inertiajs/users', function () {
-    return Inertia::render('Users/Index', [
-        //'time' => now()->toTimeString()
-        'users' => \App\Models\User::query()
-            ->when(request('search'), function ($query, $search){
-                $query->where('name', 'like', "%{$search}%");
-            })
-            ->paginate(5)
-            ->withQueryString()
-            ->through(function ($user){
-                return ['id' => $user->id, 'name' => $user->name];
-            }),
-        'filters' => Request::only(['search'])
-    ]);
-});
-Route::get('/inertiajs/users/create', function (){
-    return Inertia::render('Users/Create', [
-        'roles' => UserRole::cases(),
-    ]);
-});
-Route::post('/inertiajs/users', function (){
-    $attributes = Request::validate([
-        'name' => 'required|max:255',
-        'username' => ['required', 'min:3', 'max:255', Rule::unique('users', 'username'), 'regex:/^[\w\d]+$/i'],
-        'email' => ['required', 'email', 'max:255', Rule::unique('users', 'email')],
-        'password' => ['required', 'min:7', 'max:255'],
-        'role' => ['required', (new Enum(UserRole::class))],
-    ]);
-
-    \App\Models\User::create($attributes);
-
-    return redirect('/inertiajs/users');
-});
-Route::get('/inertiajs/settings', function () {
-    return Inertia::render('Settings');
-});
-Route::post('/inertiajs/logout', function () {
-    dd(request('foo'));
+Route::middleware('auth')->group(function () {
+    Route::get('/inertiajs', function () {
+        return Inertia::render('Home');
+    });
+    /*Route::get('/inertiajs/users', [Users::class, 'index']);
+    Route::get('/inertiajs/users/create', [Users::class, 'create'])->can('create', User::class);
+    Route::post('/inertiajs/users', [Users::class, 'store'])->can('create', User::class);
+    Route::get('/inertiajs/users/{user}/edit', [Users::class, 'edit'])->can('update', User::class);
+    Route::patch('/inertiajs/users/{user}', [Users::class, 'update'])->can('update', User::class);
+    Route::delete('/inertiajs/users/{user}', [Users::class, 'destroy'])->can('delete', User::class);*/
+    Route::resource('inertiajs/users', Users::class)->except('show');
+    Route::get('/inertiajs/settings', function () {
+        return Inertia::render('Settings');
+    });
 });
