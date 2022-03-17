@@ -2,6 +2,7 @@
 
 namespace App\Nova;
 
+use App\Nova\Filters\FieldsFilter;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
@@ -10,8 +11,10 @@ use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
 
-class Category extends Resource
+class Category extends TotalCountResource
 {
+    public static $indexDefaultOrder  = ['name' => 'asc'];
+
     /**
      * The model the resource corresponds to.
      *
@@ -64,7 +67,7 @@ class Category extends Resource
                     }
                 }),
 
-            HasMany::make('Offers'),
+            HasMany::make('Offers')->showOnDetail(),
         ];
     }
 
@@ -74,10 +77,10 @@ class Category extends Resource
      * @param  \Illuminate\Http\Request  $request
      * @return array
      */
-    public function cards(Request $request)
+    /*public function cards(Request $request)
     {
         return [];
-    }
+    }*/
 
     /**
      * Get the filters available for the resource.
@@ -87,7 +90,9 @@ class Category extends Resource
      */
     public function filters(Request $request)
     {
-        return [];
+        return [
+            new FieldsFilter(),
+        ];
     }
 
     /**

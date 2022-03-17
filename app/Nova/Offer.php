@@ -6,12 +6,15 @@ use App\Nova\Filters\OffersByCategory;
 use App\Nova\Filters\OffersByUser;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsTo;
+use Laravel\Nova\Fields\Currency;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Textarea;
 
-class Offer extends Resource
+class Offer extends TotalCountResource
 {
+    public static $indexDefaultOrder  = ['price' => 'desc'];
+
     /**
      * The model the resource corresponds to.
      *
@@ -50,6 +53,8 @@ class Offer extends Resource
 
             Text::make('Slug')->sortable(),
 
+            Currency::make('Price')->currency('EUR')->locale('ro')->sortable(),
+
             Textarea::make('Excerpt'),
 
             Textarea::make('Body'),
@@ -66,10 +71,10 @@ class Offer extends Resource
      * @param  \Illuminate\Http\Request  $request
      * @return array
      */
-    public function cards(Request $request)
+    /*public function cards(Request $request)
     {
         return [];
-    }
+    }*/
 
     /**
      * Get the filters available for the resource.

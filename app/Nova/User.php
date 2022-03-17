@@ -4,6 +4,7 @@ namespace App\Nova;
 
 use App\Enums\UserRole;
 use App\Nova\Actions\ChangeUserRole;
+use App\Nova\Filters;
 use App\Nova\Lenses\TopAgents;
 use App\Nova\Metrics\NewUsers;
 use App\Nova\Metrics\UsersByRole;
@@ -18,6 +19,8 @@ use Laravel\Nova\Fields\Text;
 
 class User extends Resource
 {
+    public static $priority = 10;
+
     /**
      * The model the resource corresponds to.
      *
@@ -40,6 +43,8 @@ class User extends Resource
     public static $search = [
         'id', 'name', 'username', 'email',
     ];
+
+    public static $displayInNavigation = true;
 
     /**
      * Get the fields displayed by the resource.
@@ -109,7 +114,8 @@ class User extends Resource
     public function filters(Request $request)
     {
         return [
-            new Filters\UserRole()
+            new Filters\UserRole(),
+            new Filters\FieldsFilter(),
         ];
     }
 

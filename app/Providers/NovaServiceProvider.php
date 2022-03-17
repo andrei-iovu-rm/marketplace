@@ -16,6 +16,10 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
      */
     public function boot()
     {
+        Nova::sortResourcesBy(function ($resource){
+            return $resource::$priority ?? 9999;
+        });
+
         parent::boot();
     }
 
@@ -88,5 +92,11 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     public function register()
     {
         //
+    }
+
+    protected function resources()
+    {
+        parent::resources();
+        Nova::resourcesIn(app_path('Admin'));
     }
 }
