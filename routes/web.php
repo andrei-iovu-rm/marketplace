@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminOfferController;
 use App\Http\Controllers\FavouriteOfferController;
 use App\Http\Controllers\Inertiajs\Users;
+use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\OfferController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SessionsController;
@@ -49,6 +50,8 @@ Route::middleware('auth')->group(function () {
     Route::get('favourites', [FavouriteOfferController::class, 'index']);
     Route::post('/favourite/{offer}', [FavouriteOfferController::class, 'store']);
     Route::delete('/favourite/{offer}', [FavouriteOfferController::class, 'destroy']);
+    Route::post('newsletter', [NewsletterController::class, 'store']);
+    Route::delete('newsletter', [NewsletterController::class, 'destroy']);
 });
 
 Route::middleware('auth')->group(function () {
