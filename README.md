@@ -32,3 +32,22 @@ vendor/bin/sail php artisan make:test Folder/TestName
 vendor/bin/sail test
 vendor/bin/sail artisan make:policy UserPolicy --model=User
 ```
+
+- Install Nova
+```
+vendor/bin/sail composer config repositories.nova '{"type": "composer", "url": "https://nova.laravel.com"}' --file composer.json
+vendor/bin/sail composer update --prefer-dist
+vendor/bin/sail artisan vendor:publish --tag=laravel-assets --ansi --force
+vendor/bin/sail php artisan nova:install
+vendor/bin/sail php artisan migrate
+```
+
+- The most used Nova commands
+```
+vendor/bin/sail artisan nova:resource Category -m=Category
+vendor/bin/sail artisan nova:filter UserRole
+vendor/bin/sail artisan nova:lens TopAgents
+vendor/bin/sail artisan nova:action ChangeUserRole
+vendor/bin/sail artisan nova:value NewUsers
+vendor/bin/sail artisan nova:trend UsersPerDay
+```

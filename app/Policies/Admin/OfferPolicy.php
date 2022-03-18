@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Policies;
+namespace App\Policies\Admin;
 
-use App\Enums\UserRole;
+use App\Models\Admin\Offer;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class UserPolicy
+class OfferPolicy
 {
     use HandlesAuthorization;
 
@@ -18,19 +18,19 @@ class UserPolicy
      */
     public function viewAny(User $user)
     {
-        return true;
+        return $user->id == auth()->user()->id;
     }
 
     /**
      * Determine whether the user can view the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\User  $model
+     * @param  \App\Models\Admin\Offer  $adminOffer
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(User $user, User $model)
+    public function view(User $user, Offer $adminOffer)
     {
-        return true;
+        return $user->id == $adminOffer->user_id;
     }
 
     /**
@@ -41,54 +41,54 @@ class UserPolicy
      */
     public function create(User $user)
     {
-        return $user->role === UserRole::ADMIN->value;
+        return $user->id == auth()->user()->id;
     }
 
     /**
      * Determine whether the user can update the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\User  $model
+     * @param  \App\Models\Admin\Offer  $adminOffer
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user)
+    public function update(User $user, Offer $adminOffer)
     {
-        return $user->role === UserRole::ADMIN->value;
+        return $user->id == $adminOffer->user_id;
     }
 
     /**
      * Determine whether the user can delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\User  $model
+     * @param  \App\Models\Admin\Offer  $adminOffer
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user)
+    public function delete(User $user, Offer $adminOffer)
     {
-        return $user->role === UserRole::ADMIN->value;
+        return $user->id == $adminOffer->user_id;
     }
 
     /**
      * Determine whether the user can restore the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\User  $model
+     * @param  \App\Models\Admin\Offer  $adminOffer
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function restore(User $user, User $model)
+    public function restore(User $user, Offer $adminOffer)
     {
-        //
+        return $user->id == $adminOffer->user_id;
     }
 
     /**
      * Determine whether the user can permanently delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\User  $model
+     * @param  \App\Models\Admin\Offer  $adminOffer
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function forceDelete(User $user, User $model)
+    public function forceDelete(User $user, Offer $adminOffer)
     {
-        //
+        return $user->id == $adminOffer->user_id;
     }
 }

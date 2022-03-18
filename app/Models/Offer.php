@@ -12,6 +12,11 @@ class Offer extends Model
     protected $guarded = ['id'];
     protected $with = ['category', 'county', 'city', 'area', 'transaction_type', 'author'];
 
+    public static function booted()
+    {
+        //static::addGlobalScope(new MyOffersScope());
+    }
+
     public function category()
     {
         return $this->belongsTo(Category::class);
@@ -40,6 +45,11 @@ class Offer extends Model
     public function author()
     {
         return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 
     public function scopeFilter($query, array $filters)

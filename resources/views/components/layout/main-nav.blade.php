@@ -16,6 +16,7 @@
                     <li><a class="inline-block no-underline hover:text-black hover:underline py-2 px-4" href="/">Home</a></li>
                     @auth
                         <li><a class="inline-block no-underline hover:text-black hover:underline py-2 px-4" href="/inertiajs">Inertiajs Demo</a></li>
+                        <li><a class="inline-block no-underline hover:text-black hover:underline py-2 px-4" href="/nova">Nova Demo</a></li>
                     @endauth
                 </ul>
             </nav>
