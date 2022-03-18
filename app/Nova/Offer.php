@@ -10,9 +10,12 @@ use Laravel\Nova\Fields\Currency;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Textarea;
+use Titasgailius\SearchRelations\SearchesRelations;
 
 class Offer extends TotalCountResource
 {
+    use SearchesRelations;
+
     public static $indexDefaultOrder  = ['price' => 'desc'];
 
     /**
@@ -36,6 +39,11 @@ class Offer extends TotalCountResource
      */
     public static $search = [
         'id', 'title', 'slug', 'excerpt', 'body'
+    ];
+
+    public static $searchRelations = [
+        'user' => ['name'],
+        'category' => ['name'],
     ];
 
     /**
