@@ -7,7 +7,6 @@ use App\Services\MailchimpNewsletter;
 use App\Services\NewsletterInterface;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Support\Facades\Blade;
-use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
 use MailchimpMarketing\ApiClient;
@@ -48,20 +47,7 @@ class AppServiceProvider extends ServiceProvider
 
         Blade::if('subscribed', function (NewsletterInterface $newsletter){
             $email = request()->user()?->email;
-            if (!empty($email)) {
-                return Cache::rememberForever('subscribed_' . md5($email), function () use ($newsletter, $email) {
-                    try {
-                        $newsletterUser = $newsletter->getListMember(md5($email));
-                        if($newsletterUser->status === 'subscribed') {
-                            return true;
-                        }
-                    } catch (\Exception $e) {
-                    }
-                    return false;
-                });
-            }
-
-            return false;
+            return $newsletter->emailIsSubscribed($email);
         });
 
         Gate::define('admin', function (User $user){

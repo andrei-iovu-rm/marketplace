@@ -2,13 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Services\NewsletterInterface;
-use Illuminate\Support\Facades\Cache;
-use Illuminate\Validation\ValidationException;
-
 class NewsletterController extends Controller
 {
-    public function store(NewsletterInterface $newsletter)
+    /*public function store(NewsletterInterface $newsletter)
     {
         $email = auth()->user()->email;
         try {
@@ -36,5 +32,5 @@ class NewsletterController extends Controller
         }
 
         return redirect('/')->with('success', 'You are now signed out from our newsletter');
-    }
+    }*/
 }
