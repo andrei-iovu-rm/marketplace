@@ -30,6 +30,7 @@ vendor/bin/sail artisan migrate:fresh --seed
 vendor/bin/sail php artisan make:livewire Folder/ComponentName
 vendor/bin/sail php artisan make:test Folder/TestName
 vendor/bin/sail test
+vendor/bin/sail test --filter TestName
 vendor/bin/sail artisan make:policy UserPolicy --model=User
 ```
 

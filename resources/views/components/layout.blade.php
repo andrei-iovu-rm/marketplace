@@ -50,7 +50,9 @@
     </div>
 </section>
 
-<livewire:offers.newsletter />
+@auth
+    <livewire:offers.newsletter />
+@endauth
 
 <footer class="container mx-auto bg-white py-8 border-t border-gray-400">
     <div class="container flex px-3 py-8 ">

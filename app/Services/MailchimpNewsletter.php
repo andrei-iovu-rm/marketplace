@@ -11,7 +11,7 @@ class MailchimpNewsletter implements NewsletterInterface
     {
     }
 
-    public function getCacheKey(string $email)
+    public static function getCacheKey(string $email)
     {
         return 'subscribed_' . md5($email);
     }
@@ -37,13 +37,13 @@ class MailchimpNewsletter implements NewsletterInterface
     {
         $list ??= config('services.mailchimp.lists.subscribers');
 
-        return $this->client->lists->deleteListMember($list, md5($email));
+        $this->client->lists->deleteListMember($list, md5($email));
     }
 
     public function emailIsSubscribed(string $email = null)
     {
         if (!empty($email)) {
-            return Cache::rememberForever($this->getCacheKey($email), function () use ($email) {
+            return Cache::remember(static::getCacheKey($email), 3600, function () use ($email) {
                 try {
                     $newsletterUser = $this->getListMember($email);
                     if($newsletterUser->status === 'subscribed') {

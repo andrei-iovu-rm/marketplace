@@ -39,7 +39,7 @@ class Newsletter extends Component
     {
         try {
             $newsletter->subscribe($email);
-            Cache::forever($newsletter->getCacheKey($email), true);
+            Cache::forget($newsletter::getCacheKey($email));
             $this->subscribed = true;
             $this->emit('emailSubscribed');
         } catch (\Exception $e) {
@@ -55,7 +55,7 @@ class Newsletter extends Component
     {
         try {
             $newsletter->deleteListMember($email);
-            Cache::forget($newsletter->getCacheKey($email));
+            Cache::forget($newsletter::getCacheKey($email));
             $this->subscribed = false;
             $this->emit('emailUnsubscribed');
         } catch (\Exception $e) {
