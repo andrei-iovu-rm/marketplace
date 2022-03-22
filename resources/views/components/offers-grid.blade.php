@@ -15,7 +15,9 @@
                     <x-offer-card-description :offer="$offer" class="col-span-11">
                         <a href="/offers/{{ $offer->slug }}">{{ ucwords($offer->title) }}</a>
                     </x-offer-card-description>
-                    <livewire:favourites.create :offer="$offer" :favourites="$favourites" />
+                    @auth
+                        <livewire:favourites.create :offer="$offer" :favourites="$favourites" :wire:key="'grid-' . $offer->id" />
+                    @endauth
                 </div>
             </div>
         @endforeach

@@ -634,6 +634,16 @@ webpackAsyncContext.keys = () => (Object.keys(map));
 webpackAsyncContext.id = "./resources/js/Pages lazy recursive ^\\.\\/.*$";
 module.exports = webpackAsyncContext;
 
+/***/ }),
+
+/***/ "?2128":
+/*!********************************!*\
+  !*** ./util.inspect (ignored) ***!
+  \********************************/
+/***/ (() => {
+
+/* (ignored) */
+
 /***/ })
 
 },
